@@ -1,51 +1,40 @@
 package com.cefalo.school.calculator;
 
-public class ReviewCalculator {
+public abstract class ReviewCalculator {
 
-    private final Impact impact;
-    private final double salary;
-    private final Score score;
+  double salary;
+  Score score;
 
-    public ReviewCalculator(double salary, Score score, Impact impact) {
-        this.salary = salary;
-        this.score = score;
-        this.impact = impact;
-    }
+  public ReviewCalculator(double salary, Score score) {
+    this.salary = salary;
+    this.score = score;
+  }
 
-    public double calculate() {
+  public double calculate() {
 
-        double result = this.salary;
-        result += countBaseScore();
-        result += countDisciplineScore();
-        result += countProblemSolvingScore();
-        result += countLeadershipScore();
-        result += countCommunicationScore();
-        result += countExperienceScore();
+    double result = this.salary;
+    result += countBaseScore();
+    result += countDeciplineScore();
+    result += countProblemSolvingScore();
+    result += countLeadershipScore();
+    result += countCommunicationScore();
+    result += countExperienceScore();
 
-        return result;
-    }
+    return result;
+  }
 
-    private double countBaseScore() {
-        return this.salary * 0.05;
-    }
+  public double countBaseScore() {
+    return this.salary * 0.05;
+  }
 
-    private double countDisciplineScore() {
-        return salary * (score.getDecipline() / 10) * impact.getDisciplineImpact();
-    }
+  public abstract double countDeciplineScore();
 
-    private double countProblemSolvingScore() {
-        return salary * (score.getProblemSolving() / 10) * impact.getProblemSolvingImpact();
-    }
+  public abstract double countProblemSolvingScore();
 
-    private double countLeadershipScore() {
-        return salary * (score.getLeaderShip() / 10) * impact.getLeadershipImpact();
-    }
+  public abstract double countLeadershipScore();
 
-    private double countCommunicationScore() {
-        return salary * (score.getCommunication() / 10) * impact.getCommunicationImpact();
-    }
+  public abstract double countCommunicationScore();
 
-    private double countExperienceScore() {
-        return salary * (score.getYearsOfExperience() / 10) * impact.getExperienceImpact();
-    }
+  public abstract double countExperienceScore();
+
 }
